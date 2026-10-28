@@ -3,18 +3,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Protect California Bobcats</title>
 
   <!-- Favicon: U+2732 -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%B2%3C/text%3E%3C/svg%3E">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%B2%3C/text%3E%3C/svg%3E">
 
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
       text-align: center;
-      padding: 50px 20px;
+      padding: 40px 20px;
       max-width: 650px;
       margin: auto;
       line-height: 1.5;
@@ -23,23 +25,28 @@
 
     h1 {
       font-size: 28px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 16px 24px;
+      display: block;
+      margin: 16px auto;
+      padding: 16px 20px;
       background: #222;
       color: white;
       text-decoration: none;
       border-radius: 6px;
       font-size: 18px;
       font-weight: bold;
+      max-width: 320px;
+    }
+
+    .gmail {
+      background: #375b46;
     }
 
     .small {
-      margin-top: 20px;
+      margin-top: 22px;
       font-size: 14px;
       color: #555;
     }
@@ -51,23 +58,42 @@
   <h1>Protect California Bobcats</h1>
 
   <p>
-    Your email app should open automatically
-    with a pre-written email to the California
+    Help protect California's bobcats from
+    recreational hunting by sending a
+    pre-written email to the California
     Department of Fish and Wildlife.
   </p>
 
   <p>
-    <strong>Please add your name and city before sending.</strong>
+    <strong>
+      Choose your email app below.
+    </strong>
   </p>
 
-  <a id="emailButton" class="button" href="#">
-    Open Email
+  <a id="emailButton"
+     class="button"
+     href="#">
+    Open in Email App
+  </a>
+
+  <a id="gmailButton"
+     class="button gmail"
+     href="#">
+    Open in Gmail
   </a>
 
   <p class="small">
-    If your email does not open automatically,
-    tap the button above. You can edit or
-    personalize the message before sending.
+    Your email will be pre-filled with the
+    recipient, subject, and message.
+    Please add your name and city before sending.
+    You can edit or personalize the message.
+  </p>
+
+  <p class="small">
+    If the email does not open, try the
+    Gmail option or open this page in
+    Safari or Chrome instead of Instagram's
+    built-in browser.
   </p>
 
 <script>
@@ -90,20 +116,28 @@ Thank you for considering my comments.
 [Name]
 [City, California]`;
 
+// Default email application
 const emailLink =
   "mailto:" + to +
   "?subject=" + encodeURIComponent(subject) +
   "&body=" + encodeURIComponent(body);
 
-/* Make the button open the email */
-document.getElementById("emailButton").href = emailLink;
+// Gmail web compose
+const gmailLink =
+  "https://mail.google.com/mail/?view=cm&fs=1" +
+  "&to=" + encodeURIComponent(to) +
+  "&su=" + encodeURIComponent(subject) +
+  "&body=" + encodeURIComponent(body);
 
-/* Automatically attempt to open the email app */
-window.addEventListener("load", function () {
-  setTimeout(function () {
-    window.location.href = emailLink;
-  }, 600);
-});
+// Assign links to buttons
+document.getElementById("emailButton").href =
+  emailLink;
+
+document.getElementById("gmailButton").href =
+  gmailLink;
+
+// No automatic redirect.
+// The user taps a button to open their email.
 
 </script>
 
